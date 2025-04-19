@@ -89,10 +89,16 @@ const AuthForm = ({ type }: { type: FormType }) => {
         toast.success("Signed in successfully.");
         router.push("/");
       }
-    } catch (error: any) {
-      console.log(error);
-      toast.error(`There was an error: ${error.message}`);
+    } catch (error: unknown) {
+      console.error(error);
+    
+      if (error instanceof Error) {
+        toast.error(`There was an error: ${error.message}`);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
+    
   };
 
   const isSignIn = type === "sign-in";
