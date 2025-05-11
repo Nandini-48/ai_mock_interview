@@ -22,15 +22,16 @@ async function Home() {
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
   return (
-    <>
-      <section className="card-cta">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#000000] via-[#000000] to-[#000000];
+p-4">
+      <section className="card-cta bg-gradient-to-br from-[#000000] via-[#000000] to-[#24243e]">
         <div className="flex flex-col gap-6 max-w-lg">
-          <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
+          <h2>Boost Your Interview Skills with AI-Based Practice and Real-Time Feedback</h2>
           <p className="text-lg">
-            Practice real interview questions & get instant feedback
+            Train with Real Interview Questions. Get Feedback in Seconds.
           </p>
 
-          <Button asChild className="btn-primary max-sm:w-full">
+          <Button asChild className="btn-primary btn-neon-pulse max-sm:w-full">
             <Link href="/interview">Start an Interview</Link>
           </Button>
         </div>
@@ -45,7 +46,7 @@ async function Home() {
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
-        <h2>Your Interviews</h2>
+        <h2>History</h2>
 
         <div className="interviews-section">
           {hasPastInterviews ? (
@@ -67,7 +68,7 @@ async function Home() {
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
-        <h2>Take Interviews</h2>
+        <h2>Recommendation</h2>
 
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
@@ -87,7 +88,7 @@ async function Home() {
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

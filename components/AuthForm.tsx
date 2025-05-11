@@ -91,14 +91,13 @@ const AuthForm = ({ type }: { type: FormType }) => {
       }
     } catch (error: unknown) {
       console.error(error);
-    
+
       if (error instanceof Error) {
         toast.error(`There was an error: ${error.message}`);
       } else {
         toast.error("An unexpected error occurred.");
       }
     }
-    
   };
 
   const isSignIn = type === "sign-in";
@@ -108,7 +107,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       <div className="flex flex-col gap-6 card py-14 px-10">
         <div className="flex flex-row gap-2 justify-center">
           <Image src="/logo.svg" alt="logo" height={32} width={38} />
-          <h2 className="text-primary-100">Swastik skill hub</h2>
+          <h2 className="text-primary-100">Skill hub</h2>
         </div>
 
         <h3 className="text-center text-lg font-semibold">
@@ -128,7 +127,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 label="Name"
                 placeholder="Your Name"
                 type="text"
-               // autoComplete="name"
+                // autoComplete="name"
               />
             )}
 
@@ -138,7 +137,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               label="Email"
               placeholder="Your email address"
               type="email"
-             // autoComplete="email"
+              // autoComplete="email"
             />
 
             <FormField

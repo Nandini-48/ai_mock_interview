@@ -35,7 +35,7 @@ const Feedback = async ({ params }: RouteParams) => {
         <div className="flex flex-row gap-5">
           {/* Overall Impression */}
           <div className="flex flex-row gap-2 items-center">
-            <Image src="/star.svg" width={22} height={22} alt="star" />
+            <Image src="/star.svg" width={35} height={35} alt="star" />
             <p>
               Overall Impression:{" "}
               <span className="text-primary-200 font-bold">

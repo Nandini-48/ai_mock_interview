@@ -43,10 +43,7 @@ const InterviewCard = async ({
         <div>
           {/* Type Badge */}
           <div
-            className={cn(
-              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
-              badgeColor
-            )}
+            className={cn("absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg badge-type")}
           >
             <p className="badge-text ">{normalizedType}</p>
           </div>
@@ -76,7 +73,7 @@ const InterviewCard = async ({
             </div>
 
             <div className="flex flex-row gap-2 items-center">
-              <Image src="/star.svg" width={22} height={22} alt="star" />
+              <Image src="/star.svg" width={35} height={35} alt="star" />
               <p>{feedback?.totalScore || "---"}/100</p>
             </div>
           </div>

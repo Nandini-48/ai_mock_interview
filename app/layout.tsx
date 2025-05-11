@@ -10,7 +10,7 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Swastik skill hub",
+  title: "Skill hub",
   description: "An AI-powered platform for preparing for mock interviews",
 };
 

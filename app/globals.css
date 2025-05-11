@@ -303,7 +303,7 @@
 }
 
 @utility pattern {
-  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat;
+  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat bg-cover;
 }
 
 @utility blue-gradient-dark {
@@ -330,5 +330,40 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+/* Add this to your existing CSS */
+@layer components {
+  .btn-primary {
+    @apply !bg-sky-500 !text-white hover:!bg-sky-400 shadow-[0_0_12px_-2px_#38bdf8] !rounded-lg;
+    border: 1px solid #7dd3fc;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    @apply shadow-[0_0_15px_0px_#7dd3fc];
+    box-shadow: 0 0 20px 0px #7dd3fc;
+  }
+
+  .btn-neon-pulse {
+    animation: neon-pulse 1.5s infinite alternate;
+  }
+  .badge-type {
+    @apply !bg-gradient-to-r !from-sky-500 !to-blue-600 !text-white;
+    box-shadow: 0 0 8px -2px rgba(56, 189, 248, 0.6);
+  }
+
+  .card-border {
+    @apply bg-gradient-to-r from-blue-400 to-indigo-500 p-[2px] !border-none;
+    box-shadow: 0 0 12px -2px rgba(96, 165, 250, 0.8);
+  }
+}
+
+@keyframes neon-pulse {
+  from {
+    box-shadow: 0 0 15px -3px #38bdf8;
+  }
+  to {
+    box-shadow: 0 0 25px 5px #7dd3fc;
   }
 }
