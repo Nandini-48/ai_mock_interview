@@ -1,5 +1,7 @@
 "use client";
 
+import { PhoneIcon, PhoneOffIcon } from "lucide-react";
+
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -147,75 +149,160 @@ const Agent = ({
 
   return (
     <>
-      <div className="call-view">
-        {/* AI Interviewer Card */}
-        <div className="card-interviewer">
-          <div className="avatar">
+      <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden flex flex-col items-center justify-between">
+        {/* AI Interviewer View with Speaking Animation */}
+        <div className="absolute left-4 w-[280px] h-[220px] bg-white/10 rounded-xl shadow-md p-3 flex flex-col items-center">
+          <div className="relative w-full h-[180px] overflow-hidden rounded-md">
+            {/* Speaking Animation Effect */}
+            {isSpeaking && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute w-32 h-32 bg-blue-400/30 rounded-full animate-ping-slow" />
+                <div className="absolute w-24 h-24 bg-blue-400/20 rounded-full animate-ping-slow-delayed" />
+              </div>
+            )}
             <Image
               src="/ai-avatar.png"
-              alt="profile-image"
-              width={590}
-              height={170}
-              className="object-cover"
+              alt="AI Interviewer"
+              width={280}
+              height={180}
+              className="relative z-10 object-cover w-full h-full"
             />
-            {isSpeaking && <span className="animate-speak" />}
           </div>
-          <h3>AI Interviewer</h3>
+          <h3 className="text-white mt-1 text-base font-semibold flex items-center gap-2">
+            AI Interviewer
+            {isSpeaking && (
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            )}
+          </h3>
         </div>
 
-        {/* User Profile Card */}
-        <div className="card-border">
-          <div className="card-content">
+        {/* Enhanced Transcript Box */}
+        {/* Simplified Transcript Box */}
+        {(messages.length > 0 || isSpeaking) && (
+          <div className="absolute top-[32%] left-[27%] w-[47%] py-5 px-6 bg-gradient-to-br from-gray-900 to-blue-900/30 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 z-50">
+            {/* Header Section */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="p-2 rounded-full bg-blue-400/10">
+                <svg
+                  className="w-6 h-6 text-blue-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-blue-400 text-lg font-semibold">
+                Live Conversation
+              </h3>
+            </div>
+
+            {/* Message Container */}
+            <div className="relative min-h-[100px] p-4 bg-black/30 rounded-lg">
+              {/* Message Content */}
+              {messages.length > 0 && (
+                <p
+                  key={`msg-${messages.length}`}
+                  className="text-gray-100 text-center text-md leading-relaxed animate-fadeIn"
+                >
+                  {messages[messages.length - 1].content}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Candidate View (unchanged) */}
+        <div className="absolute bottom-24 right-4 w-[280px] h-[220px] bg-white/10 rounded-xl shadow-md p-3 flex flex-col items-center">
+          <div className="w-full h-[180px] overflow-hidden rounded-md">
             <Image
               src="/user-avatar.png"
-              alt="profile-image"
-              width={539}
-              height={539}
-              className="rounded-full object-cover size-[120px]"
+              alt="Candidate"
+              width={280}
+              height={180}
+              className="object-cover w-full h-full"
             />
-            <h3>{userName}</h3>
           </div>
+          <h3 className="text-white mt-1 text-base font-semibold">
+            {userName}
+          </h3>
         </div>
-      </div>
 
-      {messages.length > 0 && (
-        <div className="transcript-border">
-          <div className="transcript">
-            <p
-              key={lastMessage}
-              className={cn(
-                "transition-opacity duration-500 opacity-0",
-                "animate-fadeIn opacity-100"
-              )}
+        {/* Call Button (unchanged) */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+          {callStatus !== "ACTIVE" ? (
+            <button
+              className="relative w-16 h-16 rounded-full bg-green-600 hover:bg-green-700 flex items-center justify-center shadow-lg transition"
+              onClick={handleCall}
             >
-              {lastMessage}
-            </p>
-          </div>
-        </div>
-      )}
-
-      <div className="w-full flex justify-center">
-        {callStatus !== "ACTIVE" ? (
-          <button className="relative btn-call" onClick={() => handleCall()}>
-            <span
-              className={cn(
-                "absolute animate-ping rounded-full opacity-75",
-                callStatus !== "CONNECTING" && "hidden"
+              {callStatus === "CONNECTING" && (
+                <span className="absolute w-full h-full rounded-full bg-green-400 animate-ping opacity-75" />
               )}
-            />
-
-            <span className="relative">
-              {callStatus === "INACTIVE" || callStatus === "FINISHED"
-                ? "Call"
-                : ". . ."}
-            </span>
-          </button>
-        ) : (
-          <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End
-          </button>
-        )}
+              <PhoneIcon className="text-white w-6 h-6 relative z-10" />
+            </button>
+          ) : (
+            <button
+              className="w-16 h-16 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shadow-lg transition"
+              onClick={handleDisconnect}
+            >
+              <PhoneOffIcon className="w-6 h-6" />
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Add custom animation keyframes */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(5px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes ping-slow {
+          0% {
+            transform: scale(0.8);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.8);
+            opacity: 0;
+          }
+        }
+        .animate-ping-slow {
+          animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .animate-ping-slow-delayed {
+          animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+          animation-delay: 0.5s;
+        }
+
+        @keyframes quickFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(5px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-quickFadeIn {
+          animation: quickFadeIn 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 };

@@ -262,7 +262,7 @@
   }
 
   .root-layout {
-    @apply flex mx-auto max-w-7xl flex-col gap-12 my-12 px-16 max-sm:px-4 max-sm:my-8;
+    @apply flex mx-auto max-w-7xl flex-col gap-7 my-3 px-16 max-sm:px-4 max-sm:my-8;
   }
 
   .card-cta {
@@ -366,4 +366,192 @@
   to {
     box-shadow: 0 0 25px 5px #7dd3fc;
   }
+}
+.call-button {
+  @apply w-16 h-16 rounded-full bg-green-600 flex items-center justify-center
+         shadow-lg transition-transform duration-300 hover:scale-105 
+         hover:bg-green-700 focus:outline-none;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.4);
+}
+
+.ping::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.4);
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  z-index: -1;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.call-button-green {
+  @apply w-16 h-16 rounded-full bg-green-600 flex items-center justify-center
+         shadow-lg transition-transform duration-300 hover:scale-105 
+         hover:bg-green-700 focus:outline-none relative;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.6), 0 0 25px rgba(34, 197, 94, 0.4);
+}
+
+.call-button-red {
+  @apply w-16 h-16 rounded-full bg-red-600 flex items-center justify-center
+         shadow-lg transition-transform duration-300 hover:scale-105 
+         hover:bg-red-700 focus:outline-none relative;
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.6), 0 0 25px rgba(220, 38, 38, 0.4);
+}
+
+.ping::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.4);
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  z-index: -1;
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.transcript-center {
+  @apply flex items-center justify-center w-[250px] text-center bg-white/10
+         border border-gray-300 backdrop-blur-sm rounded-xl px-4 py-3 text-sm shadow-md;
+  height: 140px;
+  max-width: 300px;
+}
+
+.transcript-box p {
+  @apply text-white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.call-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  gap: 2rem; /* Adds spacing between interviewer, transcript, and candidate */
+}
+
+.transcript-box-between {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transcript {
+  background-color: #1f1f1f;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  max-width: 320px;
+  min-width: 250px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+.h-screen-minus-header {
+  height: calc(
+    100vh - 80px
+  ); /* Adjust 80px based on your actual header height */
+}
+@keyframes softFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-softFadeIn {
+  animation: softFadeIn 0.4s ease-out;
+}
+
+.animate-wave {
+  animation: wave 1.2s infinite;
+}
+
+.animate-float {
+  animation: float 8s linear infinite;
+}
+@keyframes softFadeIn {
+  0% { 
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: translateY(0) }
+  30% { transform: translateY(-8px) }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 0 }
+  50% { opacity: 1 }
+  100% { transform: translateY(-120px) scale(0.5); opacity: 0 }
+}
+
+.animate-softFadeIn {
+  animation: softFadeIn 0.4s ease-out;
+}
+
+.animate-wave {
+  animation: wave 1.2s infinite;
+}
+
+.animate-float {
+  animation: float 8s linear infinite;
 }
